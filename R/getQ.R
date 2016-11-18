@@ -13,7 +13,7 @@
 getQ <- function(method=NULL,path=NULL,filename=NULL) {
 
     Q <- switch(method,
-                   "processedNVE"        = getQ.processedNVE(path=path,filename=filename)
+                   "processedNVE"        = getQ.processedNVE(path=path,filename=filename),
                    (message=paste0("Invalid method:", method,".")))
 
     return(Q)
