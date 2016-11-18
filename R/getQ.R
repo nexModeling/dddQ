@@ -26,5 +26,8 @@ getQ.processedNVE <- function(path,filename){
   tmp <- utils::read.table(path,sep="\t")
   assign("Q",tmp[,25],envir=env)
   rm(tmp)
-  return(get("Q",envir=env))
+  Q <- get("Q",envir=env)
+  missingValues <- -10000
+  Q[Q==missingValues] <- NA
+  return(Q)
 }
