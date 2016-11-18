@@ -13,7 +13,7 @@
 getQ <- function(method=NULL,path=NULL,filename=NULL) {
 
     Q <- switch(method,
-                   "processedNVE"        = getQ.processedNVE(path=path,filename=filename)
+                   "processedNVE"        = getQ.processedNVE(path=path,filename=filename),
                    (message=paste0("Invalid method:", method,".")))
 
     return(Q)
@@ -26,5 +26,8 @@ getQ.processedNVE <- function(path,filename){
   tmp <- utils::read.table(path,sep="\t")
   assign("Q",tmp[,25],envir=env)
   rm(tmp)
-  return(get("Q",envir=env))
+  Q <- get("Q",envir=env)
+  missingValues <- -10000
+  Q[Q==missingValues] <- NA
+  return(Q)
 }
